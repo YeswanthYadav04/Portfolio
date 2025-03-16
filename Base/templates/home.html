@@ -1,0 +1,1043 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+        :root {
+            --primary:rgb(9, 105, 183);           /* Rich purple */
+            --secondary:rgb(79, 42, 200);         /* Deep blue */
+            --accent: #4cc9f0;            /* Bright cyan */
+            --dark: #10002b;              /* Very dark purple */
+            --light: #f8f9fa;             /* Light gray */
+            --text-primary: #f8f9fa;      /* Light text */
+            --text-secondary:rgb(143, 193, 242);    /* Slightly darker text */
+            --gradient-bg:rgb(3, 22, 73);       /* Static blue background */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--gradient-bg); /* Static blue background */
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(255,255,255,0.03)' fill-rule='evenodd'/%3E%3C/svg%3E");
+            z-index: -1;
+        }
+
+        section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        /* Navbar */
+        #navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(16, 0, 43, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .scrolled {
+            padding: 0.5rem 2rem !important;
+            background-color: rgba(16, 0, 43, 0.95) !important;
+        }
+
+        #navbar .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .left-nav h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, var(--accent), #f72585);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .left-nav h2::after {
+            content: '';
+            position: absolute;
+            width: 30%;
+            height: 3px;
+            background: linear-gradient(45deg, var(--accent), #f72585);
+            bottom: -5px;
+            left: 0;
+        }
+
+        #navbar ul {
+            display: flex;
+            list-style: none;
+        }
+
+        #navbar ul li {
+            margin: 0 1rem;
+        }
+
+        #navbar ul li a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        #navbar ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        #navbar ul li a:hover::after {
+            width: 70%;
+        }
+
+        #navbar ul li a:hover {
+            color: var(--accent);
+        }
+
+        #navbar ul li a i {
+            margin-left: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* Home Section */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 7rem;
+        }
+
+        .home-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .home-left {
+            width: 50%;
+            padding-right: 3rem;
+        }
+
+        .home-right {
+            width: 45%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .home-left h6 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .home-left h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            line-height: 1.2;
+            background: linear-gradient(45deg, var(--text-primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .home-left h4 {
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        .home-left p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 90%;
+        }
+
+        .home-right .circle {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 
+                0 0 0 10px rgba(76, 201, 240, 0.1),
+                0 0 0 20px rgba(76, 201, 240, 0.05),
+                0 0 30px rgba(76, 201, 240, 0.3);
+        }
+
+        .home-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .home-right .circle:hover img {
+            transform: scale(1.1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--text-primary);
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+        }
+
+        .btn.live {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn.live:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* About Section */
+        #about {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: inline-block;
+            background: linear-gradient(45deg, var(--text-primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .section-title h1::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            bottom: -10px;
+            left: 25%;
+            border-radius: 2px;
+        }
+
+        .about-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .about-left {
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-left img {
+            width: 80%;
+            border-radius: 20px;
+            box-shadow: 
+                -15px 15px 0 var(--accent),
+                0 0 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .about-left img:hover {
+            transform: translate(5px, -5px);
+            box-shadow: 
+                -20px 20px 0 var(--primary),
+                0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-right {
+            width: 55%;
+            padding-left: 2rem;
+        }
+
+        .about-content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            color: var(--text-primary);
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        #skills {
+            background: var(--gradient-bg); /* Static blue background */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skills-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .skills-left {
+            width: 45%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .skills-left img {
+            width: 90%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .skills-left img:hover {
+            transform: scale(1.05);
+        }
+
+        .skills-right {
+            width: 50%;
+        }
+
+        /* Progress Bar Styles */
+        .bar {
+            position: relative;
+            margin: 2.5rem 0;
+        }
+
+        .bar-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .progress {
+            width: 100%;
+            height: 12px;
+            background: rgb(61, 31, 157);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgb(68, 35, 211);
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 30px;
+            position: relative;
+            transition: width 2s cubic-bezier(0.1, 0.42, 0.85, 1);
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                        transparent, rgb(70, 28, 224), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Progress Bar Widths */
+        .bar.python .progress-fill { width: 90%; }
+        .bar.html .progress-fill { width: 90%; }
+        .bar.css .progress-fill { width: 80%; }
+        .bar.js .progress-fill { width: 80%; }
+        .bar.django .progress-fill { width: 75%; }
+        .bar.mysql .progress-fill { width: 50%; }
+
+        /* Projects Section */
+        #projects {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .projects-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .projects-item {
+            width: calc(50% - 3rem);
+            min-width: 300px;
+            background: rgba(16, 0, 43, 0.8);
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .projects-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, transparent 100%);
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        .projects-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .projects-item h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            position: relative;
+        }
+
+        .projects-item h1::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            bottom: -8px;
+            left: 0;
+        }
+
+        .projects-item p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            flex-grow: 1;
+            line-height: 1.8;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        /* Contact Section */
+        #contact {
+            position: relative;
+            background: var(--gradient-bg); /* Static blue background */
+            overflow: hidden;
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .form {
+            width: 100%;
+            background: rgba(16, 0, 43, 0.5);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-div {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-div input, .form-div textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-div input:focus, .form-div textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(76, 201, 240, 0.3);
+        }
+
+        .form-div input::placeholder, .form-div textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        form .btn {
+            margin-top: 1rem;
+            width: auto;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Footer Section */
+        #footer {
+            background-color: var(--dark);
+            padding: 3rem 0 1.5rem;
+            position: relative;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        #footer ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        #footer ul.links li {
+            margin: 0 1.5rem;
+        }
+
+        #footer ul.links li a {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        #footer ul.links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        #footer ul.links li a:hover {
+            color: var(--accent);
+        }
+
+        #footer ul.links li a:hover::after {
+            width: 100%;
+        }
+
+        #footer ul.font-awesome {
+            margin-top: 2rem;
+        }
+
+        #footer ul.font-awesome a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        #footer ul.font-awesome a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        #footer ul.font-awesome li {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+        }
+
+        #footer p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cpy-white {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .home-left h1 {
+                font-size: 3.5rem;
+            }
+            
+            .home-right .circle {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .home-container, .about-container, .skills-container {
+                flex-direction: column;
+            }
+            
+            .home-left, .home-right, 
+            .about-left, .about-right,
+            .skills-left, .skills-right {
+                width: 100%;
+                padding: 0;
+                margin-bottom: 3rem;
+            }
+            
+            .home-left {
+                text-align: center;
+                order: 2;
+            }
+            
+            .home-right {
+                order: 1;
+                margin-bottom: 2rem;
+            }
+            
+            .about-left {
+                order: 2;
+            }
+            
+            .about-right {
+                order: 1;
+            }
+            
+            .about-content {
+                text-align: center;
+            }
+            
+            .about-content h1::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .about-left img {
+                width: 60%;
+            }
+
+            .skills-left {
+                order: 2;
+            }
+            
+            .skills-right {
+                order: 1;
+            }
+            
+            .projects-item {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            #navbar {
+                padding: 1rem;
+            }
+            
+            .left-nav h2 {
+                font-size: 1.5rem;
+            }
+            
+            #navbar ul {
+                display: none; /* Mobile menu would go here */
+            }
+            
+            .home-left h1 {
+                font-size: 2.5rem;
+            }
+            
+            .home-left h4 {
+                font-size: 1.2rem;
+            }
+            
+            .home-left p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .section-title h1 {
+                font-size: 2rem;
+            }
+            
+            .about-content h1, .projects-item h1 {
+                font-size: 1.8rem;
+            }
+            
+            .form {
+                padding: 2rem;
+            }
+        }
+
+        /* Animation Utilities */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- navbar section -->
+    <!-- Navbar Section -->
+    <nav id="navbar" class="flex s-around bg-color">
+        <div class="left-nav">
+            <h2 class="t-white">Portfolio</h2>
+        </div>
+        <div class="right-nav">
+            <ul class="flex">
+                <li><a href="#home" class="t-white roboto">Home <i class="fa-solid fa-house"></i></a></li>
+                <li><a href="#about" class="t-white roboto">About Me <i class="fa-solid fa-user"></i></a></li>
+                <li><a href="#skills" class="t-white roboto">Skills <i class="fa-solid fa-code"></i></a></li>
+                <li><a href="#Projects" class="t-white roboto">Projects <i class="fas fa-project-diagram"></i></a></li>
+                <li><a href="#Contact" class="t-white roboto">Contact <i class="fa-solid fa-rocket"></i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+     <!-- home section -->
+    <!-- Home Section -->
+    <section id="home" class="flex s-around sw-80 m-auto">
+        <div class="home-left flex items-center">
+            <div class="home-content">
+                <h6 class="poppinss">Hi, I'm</h6>
+                <h1 class="t-white">Landa Yeswanth Yadav</h1>
+                <h4 class="poppinss">Engineering Student</h4>
+                <a href="{% static 'PDF/Yeswanth_Yadav_CV.pdf' %}"  target="_blank">
+                    <button class="btn poppins">Resume</button></a>
+                    
+                <a class="btn live poppins" id="hireme" href="https://www.linkedin.com/in/landa-yeswanth-yadav-35292231b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                    target="_blank">Let's Talk</a>
+            </div>
+        </div>
+        <div class="home-right flex s-center items-center">
+            <div class="circle flex s-center items-center" id="mainImage">
+               
+                <img src="{% static 'images/mypic.jpg'%}" alt="picture">
+            </div>
+
+        </div>
+    </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h1 class="t-center my-2 t-white f-2">About Me</h1>
+            <div class="about-container flex s-around ">
+                <div class=" about-left flex s-center items-center">
+                    <!-- Here in src replade the given link with your secondary image link -->
+                    <img src="{%static 'images/mypic.jpg'%}" alt="" style="width: 60%;">
+                </div>
+    
+                <div class="about-right flex">
+                    <div class="about-content">
+                        <h1 class="t-white m-b-1 poppins">Landa Yeswanth Yadav</h1>
+                        <p class="t-white poppins">
+                            My name is Yeswanth. I’m a B.Tech student at Parul University, currently in my 2nd year, 4th semester, pursuing Computer Science & Engineering.
+                            
+                            I am passionate about backend development and have been learning Python extensively. I have gained proficiency in Django and Flask and will be working on projects based on these frameworks and contributed to a hackathon project involving real-time object detection using YOLO.
+                        
+                            My goal is to create powerful and optimized backend systems that support seamless user experiences.
+                        </p>
+                        
+                        
+                        <a class="btn " id="hireme"
+                            href="https://www.linkedin.com/in/landa-yeswanth-yadav-35292231b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">Hire Me</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <!-- Skills Section -->
+    <section id="skills">
+        <h1 class="t-center my-2 t-white f-2">Skills</h1>
+        <div class="services-container flex s-around h-50">
+        <div class=" skills-left flex s-center items-center">
+            <img src="{%static 'images/pro.avif'%}" alt="">
+        </div>
+
+        <div class="skills-right flex items-center">
+            <div class="skillss-container">
+                <div class="java bar p-relative"><span class="bar-content left t-white"> Python</span><span
+                        class="bar-content right-skills t-white">90%</span></div>
+                <div class="html bar p-relative"><span class="bar-content left t-white">HTML</span><span
+                        class="bar-content right-skills t-white">90%</span></div>
+                <div class="html bar p-relative"><span class="bar-content left t-white">HTML</span><span
+                        class="bar-content right-skills t-white">90%</span></div>
+                <div class="html bar p-relative"><span class="bar-content left t-white">C</span><span
+                        class="bar-content right-skills t-white">90%</span></div>
+                <div class="css bar p-relative"><span class="bar-content left t-white">CSS</span><span
+                        class="bar-content right-skills t-white">80%</span></div>
+                <div class="js bar p-relative"><span class="bar-content left t-white">Django</span><span
+                        class="bar-content right-skills t-white">60%</span></div>
+                <div class="python bar p-relative"><span class="bar-content left t-white">MySQL</span><span
+                        class="bar-content right-skills t-white">50%</span></div>
+                <div class="mysql bar p-relative"><span class="bar-content left t-white">Java</span><span
+                        class="bar-content right-skills t-white">40%</span></div>        
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="Projects">
+        <h1 class=" t-center my-2 t-white f-2">Projects</h1>
+        <div class="projects-container flex s-center">
+            {% comment %} <div class="projects-item flex f-col s-center items-center">
+               
+                <h1 class="t-white poppins">Amazone-clone</h1>
+                <p class="t-white poppins"> This is a functional shopping app intended to be a clone of Amazon and some of its features. This is clone is mixed with my design style and features that I thought would make it look better. This was created with React and incorporates Firebase Cloud firestore , firebase authentication, and accepts payments through Stripe.</p>
+                <div class="buttons flex s-around">
+                    <a href=""
+                        target="_blanks" class="btn mx-1 m-top">GitHub</a>
+                    <a href="" target="_blanks" class="btn m-top live">Live
+                        Link</a>
+                </div>
+            </div> {% endcomment %}
+            <div class="projects-item flex f-col s-center items-center">
+               
+                <h1 class="t-white poppins">My Portfolio</h1>
+                <p class="t-white poppins">This is My portfolio website which is created with HTML,CSS and Javascript which describe my skill and knowledge.My portfolio website showcases my work in a sleek and minimalist design, allowing the focus to be on the content itself. The layout is uncluttered, making it easy for visitors to navigate and explore my projects.</p>
+                <div class="buttons flex s-around">
+                    <a href="https://github.com/YeswanthYadav04/Portfolio" target="_blanks"
+                        class="btn mx-1 m-top">GitHub</a>
+                    <a href="#" target="_blanks" class="btn m-top live">Live
+                        Link</a>
+                </div>
+            
+            </div>
+            <div class="projects-item flex f-col s-center items-center">
+               
+                <h1 class="t-white poppins">Employee-and-Task-Management-System</h1>
+                <p class="t-white poppins">The ** Employee and Task Management System** is a Django-based web app for managing employee records. It offers user authentication, real-time updates via WebSockets, and an intuitive UI. Designed to simplify HR tasks, it ensures secure and efficient employee data management.</p>
+                <div class="buttons flex s-around">
+                    <a href="https://github.com/YeswanthYadav04/Employee-and-Task-Management-System" target="_blanks"
+                        class="btn mx-1 m-top">GitHub</a>
+                    {% comment %} <a href="#" target="_blanks" class="btn m-top live">Live
+                        Link</a> {% endcomment %}
+                </div>
+            
+            </div>
+         </div>
+    </section>
+
+     <!-- Contact Me Section -->
+     <section id="Contact" class="m-b-1">
+        <h1 class=" t-center my-2 t-white f-2">Contact Me</h1>
+        <div class="contact-container flex s-around items-centers">
+            <div class="form" id="contactForm">
+                <form method="post" > 
+                    {% csrf_token %}
+                    <div class="name form-div">
+                        <input type="text" name="name" id="name" class="poppins" placeholder="Enter Your Name">
+                    </div>
+
+                    <div class="email form-div">
+                        <input type="email" name="email" id="" class="poppins" placeholder="Enter Your Email"
+                            required>
+                    </div>
+
+                    <div class="phone form-div">
+                        <input type="phone" name="number" id="" class="poppins" placeholder="Enter Your Phone"
+                            required>
+                    </div>
+                    
+                    <div class="textarea form-div">
+                        <textarea name="content" id="textarea" cols="30" rows="10" class="poppins"
+                            placeholder="Enter Messages"></textarea>
+                    </div>
+                    <button type="submit" class="btn poppins" id="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+     <!-- Footer Section -->
+     <footer id="footer">
+        <ul class="flex s-center w-80 m-auto my-2 res">
+            <li><a href="#home" class="poppinss">Home</a></li>
+            <li><a href="#about" class="poppinss">About</a></li>
+            <li><a href="#skills" class="poppinss">Skills</a></li>
+            <li><a href="#projects" class="poppinss">Projects</a></li>
+            <li><a href="#portfolio" class="poppinss">Portfolio</a></li>
+        </ul>
+        <ul class="flex s-center w-80 font-awesome">
+            <a href="https://www.linkedin.com/in/landa-yeswanth-yadav-35292231b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer">
+                <li><i class="fa-brands fa-linkedin-in"></i></li>
+            </a>
+            <a href="https://github.com/YeswanthYadav04" target="_blank" rel="noopener noreferrer">
+                <li><i class="fa-brands fa-github"></i></li>
+            </a>
+            <a href="https://www.instagram.com/yeswanth_0204?igsh=bnY5bDI4NWdybjFn" target="_blank" rel="noopener noreferrer">
+                <li><i class="fa-brands fa-instagram"></i></li>
+            </a>
+        </ul>
+        
+        <p class="t-center my-2 poppins">&copy; All Rights Reserved - <span class="cpy-white poppins">L.Yeswanth Yadav 
+                </span></p>
+
+    </footer>
+</body>
+</html>

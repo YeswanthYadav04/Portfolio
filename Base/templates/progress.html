@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Bar Test</title>
+    <style>
+        /* Progress Bar Container */
+        .bar {
+            position: relative;
+            margin: 1.5rem 0;
+            height: 20px; /* Height of the progress bar */
+            background: #2c2c6c; /* Background color of the bar */
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* Progress Bar Fill */
+        .bar::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            border-radius: 10px;
+            background: #da7fa8; /* Color of the progress bar */
+            animation: fillAnimation 2s ease-in-out forwards;
+        }
+
+        /* Text Inside Progress Bar */
+        .bar-content {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: #fff;
+            z-index: 2;
+        }
+
+        .left {
+            left: 10px;
+        }
+
+        .right-skills {
+            right: 10px;
+        }
+
+        /* Progress Bar Widths */
+        .bar.java::before { width: 90%; background: #e54c21; }
+        .bar.html::before { width: 90%; background: #00a0e4; }
+        .bar.css::before { width: 80%; background: yellow; }
+        .bar.js::before { width: 65%; background: red; }
+        .bar.python::before { width: 50%; background: #7952b3; }
+        .bar.mysql::before { width: 30%; background: #61dafb; }
+
+        /* Animation */
+        @keyframes fillAnimation {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="bar java">
+        <span class="bar-content left">Python</span>
+        <span class="bar-content right-skills">90%</span>
+    </div>
+</body>
+</html>
