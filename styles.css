@@ -648,83 +648,48 @@
 
 /* ================= MOBILE ================= */
 
-@media (max-width: 768px) {
-  .github-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .gh-graph-wrap {
-    margin-top: 2.5rem;
-  }
-}
-
-.nav-links a[href="resume.pdf"] {
-  color: var(--green);
-  opacity: 1;
-}
-
-/* optional: slightly stronger hover */
-.nav-links a[href*="drive.google.com"]:hover {
-  color: #3ce881;
-}
-
-/* force highlight */
-.nav-links a.resume-link {
-  color: var(--green) !important;
-  opacity: 1 !important;
-  font-weight: 600;
-}
-
-/* hover */
-.nav-links a.resume-link:hover {
-  color: #3ce881;
-}
-
-@media (max-width: 768px) {
-
-  #nav {
+@media(max-width:768px){
+  nav { 
+    padding: .7rem 1.2rem;
     flex-direction: column;
     align-items: flex-start;
-    padding: 10px 20px;
+    gap: .5rem;
   }
-
-  .nav-links {
+  .nav-links { 
     display: flex;
-    flex-wrap: wrap;        /* 🔥 important */
-    gap: 10px;
-    margin-top: 10px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: .6rem;
+    width: 100%;
+    padding-bottom: .3rem;
+    scrollbar-width: none;
   }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { font-size: .48rem; letter-spacing: .04em; white-space: nowrap; }
+  .hamburger { display: none !important; }
+  .logo { font-size: .75rem; }
+  .nav-links li:last-child a { color: var(--gold); }
+  nav > div { display: none !important; }
 
-  .nav-links li {
-    list-style: none;
-  }
+  /* HERO */
+  #hero { padding: 7rem 1.5rem 3rem; min-height: 100vh; }
+  .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .hero-photo-wrap { display: flex; justify-content: center; order: -1; }
+  .photo-outer { width: 130px; height: 130px; }
+  .photo-outer img, .photo-ph { width: 130px; height: 130px; }
 
+  .scroll-hint { display: none; }
+  .hero-social { margin-top: 1rem; }
+  .hero-social a { width: 40px; height: 40px; font-size: .95rem; }
+
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .coding-grid { grid-template-columns: 1fr; }
+  .section { padding: 5rem 1.5rem; }
+  .github-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .gh-graph-wrap { margin-top: 2.5rem; }
 }
 
-@media (max-width: 768px) {
-
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .hero-right {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-  }
-
-  .hero-right img {
-    width: 180px;          /* 🔥 smaller */
-    height: 180px;
-    object-fit: cover;
-  }
-
-}
-
-@media (max-width: 768px) {
-  .hero-right img {
-    position: static;
-  }
+@media(min-width:769px){
+  .hamburger { display: none; }
 }

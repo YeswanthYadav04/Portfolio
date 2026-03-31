@@ -212,7 +212,22 @@ window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', scrollY > 50);
 });
 
+// ===================== HAMBURGER MENU =====================
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.querySelector('.nav-links');
 
+hamburger?.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+
+// close menu when a link is clicked
+navLinks?.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
 // ===================== OBSERVER =====================
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
