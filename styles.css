@@ -1,0 +1,660 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #06080f;
+      --bg2: #0a0e18;
+      --bg3: #0f1420;
+      --card: #0c1019;
+      --green: #2ecc71;
+      --green2: #27ae60;
+      --gold: #f0c040;
+      --red: #e74c3c;
+      --teal: #1abc9c;
+      --ds-red: #c0392b;
+      --ds-orange: #e67e22;
+      --aot-brown: #8B6914;
+      --border: rgba(46,204,113,0.12);
+      --border2: rgba(46,204,113,0.28);
+      --text: #e8f0e8;
+      --text2: #8aaa8a;
+      --text3: #3a5a3a;
+      --mono: 'Fira Code', monospace;
+      --sans: 'Rajdhani', sans-serif;
+      --title: 'Cinzel', serif;
+      --glow: 0 0 30px rgba(46,204,113,0.15);
+    }
+    html { scroll-behavior: smooth; }
+    body { 
+        background: var(--bg); 
+        color: var(--text); 
+        font-family: var(--sans); 
+        overflow-x: hidden; 
+        cursor: none; 
+        backface-visibility: hidden;
+    }
+    ::-webkit-scrollbar { width: 3px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--green); }
+
+    /* 🏏 CRICKET BALL CURSOR (UPGRADED) */
+/* ================= REAL CRICKET BALL CURSOR ================= */
+
+#cursor {
+  position: fixed;
+  width: 28px;
+  height: 28px;
+  background: url('images/ball.png') no-repeat center/contain;
+  pointer-events: none;
+  z-index: 9999;
+
+  /* IMPORTANT */
+  transform: translate(-50%, -50%);
+  animation: spinBall 1s linear infinite;
+
+  /* realism */
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+}
+
+/* ❌ remove fake seams */
+#cursor::before,
+#cursor::after {
+  display: none;
+}
+
+/* ring stays same */
+#cursor-ring {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgba(46,204,113,.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: all .15s ease;
+}
+
+/* spin */
+@keyframes spinBall {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+    /* ── CANVAS ── */
+    #bg-canvas { position: fixed; inset: 0; z-index: 0; opacity: .3; pointer-events: none; }
+
+    /* ── AOT WINGS WATERMARK ── */
+    .aot-wings {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 0;
+      font-size: 7rem; opacity: .04; pointer-events: none;
+      color: var(--gold); line-height: 1;
+    }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 4rem; background: rgba(6,8,15,.8); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); transition: padding .3s; }
+    nav.scrolled { padding: .8rem 4rem; }
+    .logo { font-family: var(--title); font-size: .9rem; color: var(--green); text-decoration: none; letter-spacing: .15em; display: flex; align-items: center; gap: .5rem; }
+    .logo .cricket-emoji { font-size: 1rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: var(--mono); font-size: .68rem; color: var(--text2); text-decoration: none; letter-spacing: .12em; text-transform: uppercase; position: relative; transition: color .25s; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--green); transition: width .3s; }
+    .nav-links a:hover { color: var(--green); } .nav-links a:hover::after { width: 100%; }
+
+    /* ── HERO ── */
+    #hero { min-height: 100vh; display: flex; align-items: center; max-width: 100%; padding: 0 4rem; position: relative; z-index: 1; overflow: hidden; }
+    /* cricket pitch lines subtle bg */
+    #hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent, transparent 98px, rgba(46,204,113,.025) 98px, rgba(46,204,113,.025) 100px); z-index: -1; }
+    .hero-inner { max-width: 1000px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 260px; gap: 4rem; align-items: center; }
+    .hero-pre { font-family: var(--mono); font-size: .75rem; color: var(--teal); letter-spacing: .2em; margin-bottom: 1rem; display: flex; align-items: center; gap: .8rem; animation: fd .6s ease both; }
+    .hero-pre::before { content: ''; width: 28px; height: 1px; background: var(--teal); }
+    .hero-name { font-family: var(--title); font-size: clamp(2.4rem,6vw,4.2rem); font-weight: 700; line-height: 1.05; letter-spacing: .02em; animation: fd .6s .1s ease both; }
+    .hero-name .hl { color: var(--green); }
+    .hero-name .hl2 { color: var(--gold); }
+    /* AOT quote */
+    .hero-quote { font-family: var(--mono); font-size: .72rem; color: var(--text3); margin: .8rem 0 .3rem; font-style: italic; animation: fd .6s .15s ease both; }
+    .hero-quote span { color: var(--ds-orange); }
+    .hero-typed-wrap { font-family: var(--mono); font-size: .95rem; color: var(--text2); margin: 1rem 0; min-height: 1.5rem; animation: fd .6s .2s ease both; }
+    #typed { color: var(--green); }
+    .blink { display: inline-block; width: 2px; height: 1em; background: var(--green); margin-left: 2px; animation: blink .8s infinite; vertical-align: text-bottom; }
+    @keyframes blink { 0%,100%{opacity:1}50%{opacity:0} }
+    .hero-bio { font-size: 1rem; color: var(--text2); line-height: 1.8; max-width: 500px; margin-bottom: 2rem; animation: fd .6s .3s ease both; letter-spacing: .02em; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; animation: fd .6s .4s ease both; }
+    .btn { font-family: var(--mono); font-size: .75rem; letter-spacing: .08em; padding: .7rem 1.6rem; border-radius: 3px; cursor: none; text-decoration: none; border: none; transition: all .25s; display: inline-flex; align-items: center; gap: .5rem; font-weight: 500; }
+    .btn-primary { background: var(--green); color: #000; font-weight: 700; }
+    .btn-primary:hover { background: #3ce881; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(46,204,113,.35); }
+    .btn-ghost { background: transparent; color: var(--text2); border: 1px solid var(--border2); }
+    .btn-ghost:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+    .btn-gold { background: transparent; color: var(--gold); border: 1px solid rgba(240,192,64,.3); }
+    .btn-gold:hover { background: rgba(240,192,64,.1); border-color: var(--gold); transform: translateY(-2px); }
+    .hero-social { display: flex; gap: 1rem; margin-top: 1.5rem; animation: fd .6s .5s ease both; }
+    .hero-social a { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; color: var(--text2); font-size: .8rem; text-decoration: none; transition: all .25s; }
+    .hero-social a:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+
+    /* Photo */
+    .hero-photo-wrap { display: flex; justify-content: center; align-items: center; animation: fl .8s .3s ease both; position: relative; }
+    .photo-outer { position: relative; width: 220px; height: 220px; }
+    .photo-outer::before { content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid transparent; border-top-color: var(--green); border-right-color: var(--gold); animation: spin 6s linear infinite; }
+    .photo-outer::after { content: ''; position: absolute; inset: -14px; border-radius: 50%; border: 1px solid transparent; border-bottom-color: rgba(46,204,113,.3); border-left-color: rgba(240,192,64,.3); animation: spin 10s linear infinite reverse; }
+    @keyframes spin { to{transform:rotate(360deg)} }
+    .photo-outer img, .photo-ph { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; border: 3px solid var(--bg2); }
+    .photo-ph { background: var(--bg3); display: flex; align-items: center; justify-content: center; font-family: var(--title); font-size: 3rem; color: var(--green); }
+    /* DS flame effect */
+    .flame-badge { position: absolute; bottom: 10px; right: 0; width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg,var(--ds-red),var(--ds-orange)); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; box-shadow: 0 0 16px rgba(231,76,60,.5); border: 2px solid var(--bg); }
+
+    .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .4rem; font-family: var(--mono); font-size: .62rem; color: var(--text3); letter-spacing: .1em; animation: fd 1s .9s ease both; }
+    .scroll-hint .line { width: 1px; height: 36px; background: linear-gradient(var(--green),transparent); animation: sp 1.5s infinite; }
+    @keyframes sp { 0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom} }
+    @keyframes fd { from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)} }
+    @keyframes fl { from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)} }
+
+    /* ── SECTION BASE ── */
+    .section { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 7rem 2rem; }
+    .s-label { font-family: var(--mono); font-size: .68rem; color: var(--teal); letter-spacing: .25em; text-transform: uppercase; margin-bottom: .4rem; opacity: 0; transform: translateY(10px); transition: opacity .5s,transform .5s; }
+    .s-title { font-family: var(--title); font-size: clamp(1.6rem,3.5vw,2.4rem); font-weight: 700; letter-spacing: .05em; margin-bottom: .5rem; opacity: 0; transform: translateY(16px); transition: opacity .5s .1s,transform .5s .1s; }
+    .s-line { width: 0; height: 2px; background: linear-gradient(90deg,var(--green),var(--gold)); margin-bottom: 3rem; transition: width .8s .2s; }
+    .s-content { opacity: 0; transform: translateY(20px); transition: opacity .6s .25s,transform .6s .25s; }
+    .in-view .s-label,.in-view .s-title,.in-view .s-content { opacity: 1; transform: translateY(0); }
+    .in-view .s-line { width: 48px; }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 4rem; align-items: start; }
+    .about-text { font-size: 1rem; color: var(--text2); line-height: 1.9; letter-spacing: .02em; }
+    .about-text p+p { margin-top: 1rem; }
+    .about-text strong { color: var(--text); }
+    .about-text .cricket-line { font-family: var(--mono); font-size: .78rem; color: var(--gold); margin-top: 1.2rem; font-style: italic; }
+    .about-text .aot-line { font-family: var(--mono); font-size: .75rem; color: var(--ds-orange); margin-top: .4rem; font-style: italic; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    /* stat styles defined in cricket theme block */
+
+    /* ── EXPERIENCE ── */
+    .timeline { display: flex; flex-direction: column; position: relative; padding-left: 2rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(var(--green),var(--gold),transparent); }
+    .tl-item { position: relative; padding-bottom: 2.5rem; }
+    .tl-dot { position: absolute; left: -2.4rem; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--green); border: 2px solid var(--bg); box-shadow: 0 0 10px var(--green); }
+    .tl-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.6rem; transition: border-color .3s,transform .3s; }
+    .tl-card:hover { border-color: var(--green); transform: translateX(6px); }
+    .tl-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; margin-bottom: .3rem; }
+    .tl-role { font-family: var(--title); font-size: 1rem; font-weight: 600; }
+    .tl-role .accent { color: var(--green); }
+    .tl-loc { font-family: var(--mono); font-size: .68rem; color: var(--text3); }
+    .tl-stack { font-family: var(--mono); font-size: .7rem; color: var(--text3); margin: .7rem 0; }
+    .tl-card ul { padding-left: 1rem; display: flex; flex-direction: column; gap: .45rem; }
+    .tl-card li { font-size: .92rem; color: var(--text2); line-height: 1.65; letter-spacing: .01em; }
+    .tl-card li::marker { color: var(--green); }
+
+    /* ── SKILLS ── */
+    .skill-groups { display: flex; flex-direction: column; gap: 1.8rem; }
+    .sg-label { font-family: var(--mono); font-size: .66rem; color: var(--teal); letter-spacing: .18em; text-transform: uppercase; margin-bottom: .7rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag { font-family: var(--mono); font-size: .73rem; padding: .3rem .85rem; border-radius: 3px; background: var(--card); border: 1px solid var(--border); color: var(--text2); transition: all .2s; cursor: none; opacity: 0; transform: translateY(8px); }
+    .tag.vis { opacity: 1; transform: translateY(0); }
+    .tag:hover { border-color: var(--green); color: var(--green); background: rgba(46,204,113,.07); transform: translateY(-2px); }
+
+    /* ── PROJECTS ── */
+    .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .proj-num { font-family: var(--mono); font-size: .65rem; color: var(--text3); }
+    .proj-name { font-family: var(--title); font-size: 1.2rem; font-weight: 600; color: var(--text); }
+    .proj-desc { font-size: .9rem; color: var(--text2); line-height: 1.75; flex: 1; letter-spacing: .01em; }
+    .proj-stack { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .proj-tag { font-family: var(--mono); font-size: .65rem; padding: .2rem .6rem; border-radius: 2px; background: rgba(46,204,113,.08); color: var(--green); border: 1px solid rgba(46,204,113,.2); }
+    .proj-footer { display: flex; gap: 1rem; margin-top: .3rem; }
+    .proj-link { font-family: var(--mono); font-size: .73rem; color: var(--text3); text-decoration: none; display: flex; align-items: center; gap: .4rem; padding: .4rem .9rem; border: 1px solid var(--border); border-radius: 3px; transition: all .2s; }
+    .proj-link:hover { color: var(--green); border-color: var(--green); background: rgba(46,204,113,.07); }
+    .proj-link.gold:hover { color: var(--gold); border-color: var(--gold); background: rgba(240,192,64,.07); }
+
+    /* ── CERTS ── */
+    .cert-list { display: flex; flex-direction: column; gap: .9rem; }
+    .cert { display: flex; align-items: center; gap: 1.4rem; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem 1.5rem; text-decoration: none; transition: all .3s; }
+    .cert:hover { border-color: var(--green); transform: translateX(6px); }
+    .cert-icon { font-size: 1.2rem; color: var(--green); flex-shrink: 0; width: 26px; text-align: center; }
+    .cert-name { font-size: .92rem; font-weight: 600; color: var(--text); letter-spacing: .02em; }
+    .cert-issuer { font-family: var(--mono); font-size: .68rem; color: var(--text3); margin-top: .15rem; }
+    .cert-arrow { margin-left: auto; color: var(--text3); font-size: .75rem; transition: transform .2s; }
+    .cert:hover .cert-arrow { transform: translateX(4px); color: var(--green); }
+
+    /* coding-card styles in cricket theme block */
+    .coding-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
+    .coding-platform { font-family: var(--title); font-size: .9rem; font-weight: 600; color: var(--text); margin-bottom: .3rem; }
+    .coding-handle { font-family: var(--mono); font-size: .7rem; color: var(--green); margin-bottom: 1rem; }
+    .coding-rating { font-family: var(--mono); font-size: 2rem; font-weight: 700; color: var(--text); line-height: 1; }
+    .coding-rl { font-family: var(--mono); font-size: .6rem; color: var(--text3); margin-top: .3rem; text-transform: uppercase; letter-spacing: .1em; }
+
+    /* ── CONTACT ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .contact-bio { font-size: 1rem; color: var(--text2); line-height: 1.85; margin-bottom: 1rem; letter-spacing: .02em; }
+    .contact-info { display: flex; flex-direction: column; gap: .8rem; }
+    .contact-item { display: flex; align-items: center; gap: 1rem; font-family: var(--mono); font-size: .78rem; color: var(--text2); text-decoration: none; padding: .75rem 1rem; border: 1px solid var(--border); border-radius: 6px; transition: all .25s; }
+    .contact-item:hover { border-color: var(--green); color: var(--green); transform: translateX(4px); }
+    .contact-item i { color: var(--green); width: 16px; text-align: center; }
+    form { display: flex; flex-direction: column; gap: .9rem; }
+    .fg { display: flex; flex-direction: column; gap: .35rem; }
+    label { font-family: var(--mono); font-size: .65rem; color: var(--text3); letter-spacing: .12em; text-transform: uppercase; }
+    input,textarea { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: .75rem 1rem; color: var(--text); font-family: var(--mono); font-size: .82rem; outline: none; resize: none; transition: border-color .25s; }
+    input:focus,textarea:focus { border-color: var(--green); }
+    textarea { min-height: 110px; }
+    .form-note { font-family: var(--mono); font-size: .65rem; color: var(--text3); }
+
+    /* ── DS DIVIDER ── */
+    .ds-divider { display: flex; align-items: center; gap: 1rem; margin: 0; opacity: .12; }
+    .ds-divider::before,.ds-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg,transparent,var(--ds-red),transparent); }
+    .ds-divider span { font-size: 1.2rem; }
+
+    /* ═══════════════════════════════════════════
+       🏏 CRICKET THEME ENHANCEMENTS
+    ═══════════════════════════════════════════ */
+
+    /* ── CRICKET PITCH WATERMARK ── */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 180px; height: 580px;
+      background:
+        /* crease lines */
+        linear-gradient(transparent 0%, transparent 12%, rgba(46,204,113,.04) 12%, rgba(46,204,113,.04) 13%, transparent 13%),
+        linear-gradient(transparent 0%, transparent 87%, rgba(46,204,113,.04) 87%, rgba(46,204,113,.04) 88%, transparent 88%),
+        /* pitch outline */
+        linear-gradient(90deg, transparent 0%, rgba(46,204,113,.025) 1%, transparent 1%, transparent 99%, rgba(46,204,113,.025) 99%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── CRICKET STUMP DIVIDERS ── */
+    .cricket-divider {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin: 0;
+      padding: 0 2rem;
+      opacity: .18;
+    }
+    .cricket-divider::before,
+    .cricket-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(46,204,113,.6), rgba(240,192,64,.4), transparent);
+    }
+    .cricket-divider .stumps {
+      display: flex;
+      gap: 4px;
+      align-items: flex-end;
+    }
+    .cricket-divider .stump {
+      width: 3px;
+      height: 22px;
+      background: linear-gradient(to bottom, var(--gold), rgba(240,192,64,.3));
+      border-radius: 1px 1px 0 0;
+    }
+    .cricket-divider .stump:nth-child(2) { height: 26px; }
+    .cricket-divider .bail {
+      position: absolute;
+      width: 14px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+      top: 0;
+    }
+
+    /* ── OVER COUNTER SECTION LABELS ── */
+    .s-label {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .s-label::before {
+      content: 'OVER';
+      font-family: var(--mono);
+      font-size: .55rem;
+      color: rgba(46,204,113,.3);
+      letter-spacing: .2em;
+      border: 1px solid rgba(46,204,113,.15);
+      padding: .1rem .35rem;
+      border-radius: 2px;
+    }
+
+    /* ── SCORECARD STAT CARDS ── */
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.4rem;
+      transition: border-color .3s, transform .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s;
+    }
+    .stat:hover::after { transform: scaleX(1); }
+    .stat:hover { border-color: var(--green); transform: translateY(-3px); }
+    .stat-n { font-family: var(--mono); font-size: 1.8rem; font-weight: 700; color: var(--green); line-height: 1; }
+    .stat-l { font-family: var(--mono); font-size: .65rem; color: var(--text3); margin-top: .4rem; text-transform: uppercase; letter-spacing: .1em; }
+    /* mini cricket bat icon on stat cards */
+    .stat::before {
+      content: '🏏';
+      position: absolute;
+      top: .6rem; right: .8rem;
+      font-size: .8rem;
+      opacity: .12;
+    }
+
+    /* ── BATTING CREASE ON TIMELINE ── */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 1px;
+      background: repeating-linear-gradient(
+        to bottom,
+        var(--green) 0px, var(--green) 8px,
+        transparent 8px, transparent 14px
+      );
+      opacity: .5;
+    }
+    /* cricket ball timeline dots */
+    .tl-dot {
+      position: absolute;
+      left: -2.4rem; top: 6px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #e74c3c, #8B0000);
+      border: 1.5px solid rgba(255,255,255,.15);
+      box-shadow: 0 0 12px rgba(231,76,60,.5);
+    }
+    /* seam line on ball dot */
+    .tl-dot::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 15%; right: 15%;
+      height: 1px;
+      background: rgba(255,255,255,.35);
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* ── BOUNDARY ROPE PROJECT CARDS ── */
+    .proj-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: .9rem;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    /* rope pattern top border on hover */
+    .proj-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--green) 0px, var(--green) 6px,
+        var(--gold) 6px, var(--gold) 12px
+      );
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s;
+    }
+    .proj-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: var(--glow); }
+    .proj-card:hover::before { transform: scaleX(1); }
+
+    /* SPECIAL: Gully Cricket project card — highlight */
+    .proj-card.cricket-project {
+      border-color: rgba(46,204,113,.25);
+      background: linear-gradient(135deg, var(--card) 85%, rgba(46,204,113,.04) 100%);
+    }
+    .proj-card.cricket-project::after {
+      content: '🏏';
+      position: absolute;
+      bottom: 1rem; right: 1.2rem;
+      font-size: 1.4rem;
+      opacity: .15;
+    }
+    .proj-card.cricket-project .proj-num { color: var(--green); }
+
+    /* ── CODING CARDS — BATTING AVERAGE STYLE ── */
+    .coding-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      text-decoration: none;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .coding-card::before {
+      content: 'AVG';
+      position: absolute;
+      top: .6rem; left: .7rem;
+      font-family: var(--mono);
+      font-size: .5rem;
+      color: rgba(46,204,113,.2);
+      letter-spacing: .15em;
+    }
+    .coding-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--green);
+      transform: scaleX(0);
+      transition: transform .3s;
+    }
+    .coding-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: var(--glow); }
+    .coding-card:hover::after { transform: scaleX(1); }
+
+    /* ── CRICKET GROUND BG PARTICLES (override canvas color) ── */
+    /* handled in JS */
+
+    /* ── PITCH CREASE ON HERO ── */
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: 15%;
+      left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 10%, rgba(46,204,113,.06) 30%, rgba(46,204,113,.06) 70%, transparent 90%);
+      pointer-events: none;
+    }
+
+    /* ── CRICKET SCORECARD TABLE IN ABOUT ── */
+    .cricket-scoreboard {
+      font-family: var(--mono);
+      font-size: .65rem;
+      color: var(--text3);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+      padding-bottom: .3rem;
+      border-bottom: 1px solid rgba(46,204,113,.1);
+    }
+
+    /* ── WICKET ANIMATION on section reveal ── */
+    @keyframes wicketFall {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+      60%  { transform: translateY(4px) rotate(-8deg); opacity: .8; }
+      100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    }
+    .in-view .s-title { animation: wicketFall .5s .15s ease both; }
+
+    /* ── OUTFIELD FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--text3);
+    }
+    footer::before {
+      content: '— END OF INNINGS —';
+      display: block;
+      font-family: var(--mono);
+      font-size: .55rem;
+      color: rgba(46,204,113,.2);
+      letter-spacing: .3em;
+      margin-bottom: .8rem;
+    }
+    footer .f-green { color: var(--green); }
+    footer .f-gold { color: var(--gold); }
+    .footer-anime { font-size: .65rem; margin-top: .4rem; color: var(--text3); font-style: italic; }
+
+    /* ── LIVE MATCH BADGE ── */
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: var(--mono);
+      font-size: .55rem;
+      color: var(--green);
+      border: 1px solid rgba(46,204,113,.3);
+      padding: .2rem .6rem;
+      border-radius: 2px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-left: .5rem;
+    }
+    .live-badge::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: livePulse 1.2s ease infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .3; transform: scale(0.6); }
+    }
+
+    /* ── CRICKET BALL TRAIL (enhanced) ── */
+    /* already handled by canvas in JS */
+
+    /* footer defined in cricket theme block */
+
+    @media(max-width:768px){
+      nav{padding:1rem 1.5rem;} .nav-links{display:none;}
+      #hero{padding:0 1.5rem;} .hero-inner{grid-template-columns:1fr;} .hero-photo-wrap{display:none;}
+      .about-grid,.contact-grid{grid-template-columns:1fr;gap:2rem;}
+      .proj-grid{grid-template-columns:1fr;} .coding-grid{grid-template-columns:1fr;}
+      .section{padding:5rem 1.5rem;}
+    }
+
+
+    #cursor, #cursor-ring {
+  will-change: transform;
+    }
+
+    canvas {
+    will-change: transform;
+    }
+
+/* ================= PREMIUM GITHUB ================= */
+
+/* wrapper ensures perfect alignment */
+.github-wrapper {
+  width: 100%;
+}
+
+/* grid */
+.github-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.8rem;
+  align-items: stretch;
+}
+
+/* card wrapper */
+.gh-card {
+  display: block;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* glass effect */
+.gh-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(12px);
+  z-index: 1;
+}
+
+/* image */
+.gh-card img {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  position: relative;
+  z-index: 2;
+}
+
+/* hover glow */
+.gh-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.gh-card:hover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  border: 1px solid var(--green);
+  box-shadow: 0 0 30px rgba(46,204,113,0.25);
+}
+
+/* ================= GRAPH FIX ================= */
+
+/* 🔥 THIS is the main fix */
+.gh-graph-wrap {
+  display: block;
+  margin-top: 3rem;   /* clean gap between cards & graph */
+}
+
+/* graph */
+.gh-graph {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 1rem;
+  background: var(--card);
+  transition: all 0.3s ease;
+}
+
+/* hover */
+.gh-graph:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(46,204,113,0.2);
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .github-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .gh-graph-wrap {
+    margin-top: 2.5rem;
+  }
+}

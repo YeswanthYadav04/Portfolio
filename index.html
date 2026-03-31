@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Yeswanth Yadav — Portfolio</title>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Fira+Code:wght@300;400;500&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Fira+Code:wght@300;400;500&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<canvas id="bg-canvas"></canvas>
+<div class="aot-wings">⚔</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="logo" href="#hero"><span class="cricket-emoji">🏏</span> LY</a>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#experience">exp</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#certifications">certs</a></li>
+    <li><a href="#coding">coding</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <!--<div class="hero-pre">available for internships</div>-->
+      <h1 class="hero-name">Landa<br><span class="hl">Yeswanth</span><br><span class="hl2">Yadav</span></h1>
+      <div class="hero-quote">"If you win, you live. If you lose, you die. — <span>Eren Yeager</span>"</div>
+      <div class="hero-typed-wrap">&gt; <span id="typed"></span><span class="live-badge">Live</span><span class="blink"></span></div>
+      <p class="hero-bio">Computer Science student at Parul University. I build scalable backend systems, craft RESTful APIs, and explore AI — from RAG pipelines to real-time computer vision. ServiceNow CSA Certified.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#contact">Get in Touch</a>
+        <a class="btn btn-ghost" href="#projects">View Projects</a>
+        <a class="btn btn-gold" href="https://github.com/YeswanthYadav04" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+      <div class="hero-social">
+        <a href="https://linkedin.com/in/landa-yeswanth-yadav" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/YeswanthYadav04" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="/cdn-cgi/l/email-protection#9fe6faece8fef1ebf7e6fefbfee9ababdff8f2fef6f3b1fcf0f2" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://leetcode.com/u/Yeswanth04/" target="_blank" title="LeetCode"><i class="fas fa-code"></i></a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="photo-outer">
+        <img src="images/photo.jpg" loading="lazy" alt="Yeswanth" onerror="this.style.display='none';document.getElementById('photo-fallback').style.display='flex';">
+        <div class="photo-ph" id="photo-fallback" style="display:none;">LYY</div>
+        <div class="flame-badge">🔥</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="line"></div>scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section observe">
+    <div class="s-label">01 · about</div>
+    <h2 class="s-title">Who I Am</h2>
+    <div class="s-line"></div>
+    <div class="s-content">
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I'm a Computer Science student at <strong>Parul University</strong>, passionate about backend engineering, AI/ML, and building things that work cleanly at scale.</p>
+          <p>My core stack is <strong>Python & Django</strong>, with hands-on experience in RESTful APIs, Django ORM, Jinja2 templating, WebSockets, and both relational and non-relational databases. I've led teams at hackathons, shipped real-world projects, and earned industry certifications.</p>
+          <p>Currently exploring <strong>Generative AI, RAG pipelines, and LangChain</strong>, while sharpening problem-solving through competitive programming.</p>
+          <p class="cricket-line">🏏 "Cricket taught me: stay at the crease, respect every ball, trust the process."</p>
+          <p class="aot-line">⚔ "The only way to overcome fear is to keep moving forward." — Attack on Titan</p>
+        </div>
+        <div class="stats-grid">
+          <div class="cricket-scoreboard">Scorecard</div>
+          <div class="cricket-scoreboard" style="text-align:right;">Innings I</div>
+          <div class="stat"><div class="stat-n">5+</div><div class="stat-l">Projects</div></div>
+          <div class="stat"><div class="stat-n">4+</div><div class="stat-l">Certifications</div></div>
+          <div class="stat"><div class="stat-n">1465</div><div class="stat-l">LeetCode Rating</div></div>
+          <div class="stat"><div class="stat-n">990</div><div class="stat-l">CodeChef Rating</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRICKET DIVIDER -->
+<div class="cricket-divider">
+  <div class="stumps">
+    <div class="stump"></div>
+    <div class="stump"></div>
+    <div class="stump"></div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section observe">
+    <div class="s-label">02 · experience</div>
+    <h2 class="s-title">Hackathons</h2>
+    <div class="s-line"></div>
+    <div class="s-content">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-top">
+              <div class="tl-role"><span class="accent">Team Lead</span> — Vadodara Hackathon 6.0</div>
+              <div class="tl-loc"><i class="fas fa-map-marker-alt"></i> Vadodara, India</div>
+            </div>
+            <div class="tl-stack">Python · Django · MySQL · Django ORM · Jinja2 · HTML5 · CSS3</div>
+            <ul>
+              <li>Built <strong>CampusEase</strong> using Python & Django, integrating multiple data sources into a unified system — reducing administrative overhead by ~40%.</li>
+              <li>Utilised Django ORM for database management and Jinja2 for dynamic server-side HTML rendering.</li>
+              <li>Led a 6-member team end-to-end — from architecture and development to jury presentation.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--gold);box-shadow:0 0 10px var(--gold);"></div>
+          <div class="tl-card">
+            <div class="tl-top">
+              <div class="tl-role"><span class="accent">ML Engineer</span> — AI/ML Hackathon 1.0</div>
+              <div class="tl-loc"><i class="fas fa-map-marker-alt"></i> Vadodara, India</div>
+            </div>
+            <div class="tl-stack">Python · Computer Vision · Multi-process Architecture · HTML5 · JavaScript</div>
+            <ul>
+              <li>Implemented an event-driven Python pipeline for real-time object detection, handling asynchronous data streams efficiently.</li>
+              <li>Applied multi-process architecture to parallelise inference tasks, minimising latency and improving throughput.</li>
+              <li>Developed HTML5 & JavaScript frontend to display live detection results from the Python backend.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section observe">
+    <div class="s-label">03 · skills</div>
+    <h2 class="s-title">Tech Stack</h2>
+    <div class="s-line"></div>
+    <div class="s-content">
+      <div class="skill-groups">
+        <div><div class="sg-label">Programming Languages</div><div class="tags"><span class="tag">Python</span><span class="tag">Java</span><span class="tag">C / C++</span><span class="tag">SQL</span></div></div>
+        <div><div class="sg-label">Frameworks & Libraries</div><div class="tags"><span class="tag">Django</span><span class="tag">Flask</span><span class="tag">Django ORM</span><span class="tag">WebSockets</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">LangChain</span><span class="tag">Jinja2</span></div></div>
+        <div><div class="sg-label">Frontend</div><div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span></div></div>
+        <div><div class="sg-label">Databases</div><div class="tags"><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">SQLite</span></div></div>
+        <div><div class="sg-label">Tools & Platforms</div><div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Postman</span><span class="tag">VS Code</span><span class="tag">AWS</span><span class="tag">ServiceNow</span></div></div>
+        <div><div class="sg-label">Concepts</div><div class="tags"><span class="tag">REST APIs</span><span class="tag">OOP</span><span class="tag">DSA</span><span class="tag">Event-Driven</span><span class="tag">Multi-process</span><span class="tag">NLP</span><span class="tag">RAG</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRICKET DIVIDER -->
+<div class="cricket-divider">
+  <div class="stumps">
+    <div class="stump"></div>
+    <div class="stump"></div>
+    <div class="stump"></div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section observe">
+    <div class="s-label">04 · projects</div>
+    <h2 class="s-title">Things I've Built</h2>
+    <div class="s-line"></div>
+    <div class="s-content">
+      <div class="proj-grid">
+
+        <div class="proj-card">
+          <div class="proj-num">01 · Web App</div>
+          <div class="proj-name">CampusEase</div>
+          <div class="proj-desc">Centralized campus management system integrating student management, faculty coordination, and campus services into a single Django-powered platform with Jinja2 templating and MySQL backend.</div>
+          <div class="proj-stack"><span class="proj-tag">Python</span><span class="proj-tag">Django</span><span class="proj-tag">MySQL</span><span class="proj-tag">Jinja2</span><span class="proj-tag">HTML5</span><span class="proj-tag">CSS3</span></div>
+          <div class="proj-footer">
+            <a class="proj-link" href="https://github.com/YeswanthYadav04/CampusEase" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-num">02 · Enterprise Platform</div>
+          <div class="proj-name">WorkFlowX</div>
+          <div class="proj-desc">Enterprise workforce & task management platform with real-time WebSocket notifications, attendance tracking, salary management, and dual-database integration (MySQL + MongoDB).</div>
+          <div class="proj-stack"><span class="proj-tag">Python</span><span class="proj-tag">Django</span><span class="proj-tag">WebSockets</span><span class="proj-tag">MySQL</span><span class="proj-tag">MongoDB</span><span class="proj-tag">JavaScript</span></div>
+          <div class="proj-footer">
+            <a class="proj-link" href="https://github.com/YeswanthYadav04/WorkFlowX-Enterprise-Task-Workforce-Management-Platform" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+        
+        <div class="proj-card cricket-project">
+        <div class="proj-num">03 · Web App · 🏏 Featured</div>
+        <div class="proj-name">Gully Cricket Scorer</div>
+        <div class="proj-desc">
+          A complete street cricket scoring application designed for gully matches. 
+          Supports live score tracking, ball-by-ball updates, player stats, and simplified rules 
+          tailored for informal cricket formats. Built to make local matches feel like professional games.
+        </div>
+        <div class="proj-stack">
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">Django</span>
+          <span class="proj-tag">JavaScript</span>
+          <span class="proj-tag">HTML5</span>
+          <span class="proj-tag">CSS3</span>
+          <span class="proj-tag">Cricket Logic</span>
+          
+        </div>
+        <div class="proj-footer">
+          <a class="proj-link" href="https://github.com/YeswanthYadav04/gully-cricket" target="_blank">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+        </div>
+      </div>
+
+        <div class="proj-card" style="border-style:dashed;opacity:.6;display:flex;align-items:center;justify-content:center;min-height:200px;">
+          <div style="text-align:center;">
+            <div style="font-size:2rem;margin-bottom:.5rem;">🚧</div>
+            <div class="proj-name" style="font-size:1rem;color:var(--text3);">More Coming Soon</div>
+            <div style="font-family:var(--mono);font-size:.7rem;color:var(--text3);margin-top:.4rem;">Building something new...</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section observe">
+    <div class="s-label">05 · certifications</div>
+    <h2 class="s-title">Credentials</h2>
+    <div class="s-line"></div>
+    <div class="s-content">
+      <div class="cert-list">
+        <a class="cert" href="https://www.credly.com/badges/e78ca977-f12e-4f12-8362-cf48a11c0fdb/public_url" target="_blank"><i class="fas fa-shield-halved cert-icon"></i><div><div class="cert-name">ServiceNow Certified System Administrator (CSA — Zurich Release)</div><div class="cert-issuer">ServiceNow · Credly Verified</div></div><i class="fas fa-arrow-right cert-arrow"></i></a>
+        <a class="cert" href="https://drive.google.com/file/d/1JE1b5IJoFzWoXgDjoH1j8EDACMWjoJ7s/view" target="_blank"><i class="fas fa-brain cert-icon"></i><div><div class="cert-name">Bootcamp on AI</div><div class="cert-issuer">MeitY · Government of India</div></div><i class="fas fa-arrow-right cert-arrow"></i></a>
+        <a class="cert" href="https://drive.google.com/file/d/1GH51NbVQ9klH2mrg36iG0nnYG04sOvpc/view" target="_blank"><i class="fab fa-python cert-icon"></i><div><div class="cert-name">Mastering Python</div><div class="cert-issuer">Infosys Springboard</div></div><i class="fas fa-arrow-right cert-arrow"></i></a>
+        <a class="cert" href="https://drive.google.com/file/d/1v4es8Bn4VA5BHncw2PYv-nNUdmGRKfYh/view" target="_blank"><i class="fab fa-aws cert-icon"></i><div><div class="cert-name">Cloud Computing and AI with AWS</div><div class="cert-issuer">Parul Institute of Engineering and Technology</div></div><i class="fas fa-arrow-right cert-arrow"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CODING -->
+<section id="coding">
+  <div class="section observe">
+    <div class="s-label">06 · competitive programming</div>
+    <h2 class="s-title">Coding Profiles</h2>
+    <div class="s-line"></div>
+    <div class="s-content">
+      <div class="coding-grid">
+        <a class="coding-card" href="https://leetcode.com/u/Yeswanth04/" target="_blank">
+          <div class="coding-platform">LeetCode</div>
+          <div class="coding-handle">Yeswanth04</div>
+          <div class="coding-rating" data-target="1465">0</div>
+          <div class="coding-rl">Rating · Batting Avg</div>
+        </a>
+        <a class="coding-card" href="https://www.codechef.com/users/yashu_0204" target="_blank">
+          <div class="coding-platform">CodeChef</div>
+          <div class="coding-handle">yashu_0204</div>
+          <div class="coding-rating" data-target="990">0</div>
+          <div class="coding-rl">Rating · Strike Rate</div>
+        </a>
+        <a class="coding-card" href="https://codeforces.com/profile/Yeswanth_04" target="_blank">
+          <div class="coding-platform">Codeforces</div>
+          <div class="coding-handle">Yeswanth_04</div>
+          <div class="coding-rating" data-target="374">0</div>
+          <div class="coding-rl">Rating · Economy</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section observe" id="github">
+  <div class="s-label">github</div>
+  <h2 class="s-title">Activity & Stats</h2>
+  <div class="s-line"></div>
+
+  <!-- ✅ WRAPPER (IMPORTANT) -->
+  <div class="github-wrapper">
+
+    <!-- TOP CARDS -->
+    <div class="github-grid">
+
+      <a href="https://github.com/YeswanthYadav04" target="_blank" class="gh-card">
+        <img 
+          src="https://streak-stats.demolab.com?user=YeswanthYadav04&theme=tokyonight&cache_seconds=1800" 
+          alt="GitHub streak"
+        />
+      </a>
+
+      <a href="https://github.com/YeswanthYadav04" target="_blank" class="gh-card">
+        <img 
+          src="https://github-stats-alpha.vercel.app/api?username=YeswanthYadav04&theme=tokyonight&cache_seconds=1800" 
+          alt="GitHub stats"
+        />
+      </a>
+
+    </div>
+
+    <!-- GRAPH -->
+    <a href="https://github.com/YeswanthYadav04" target="_blank" class="gh-graph-wrap">
+      <img 
+        src="https://github-readme-activity-graph.vercel.app/graph?username=YeswanthYadav04&theme=react-dark&cache_seconds=1800&height=220" 
+        alt="GitHub activity graph"
+        class="gh-graph"
+      />
+    </a>
+
+  </div>
+</section>
+
+<!-- CRICKET DIVIDER -->
+<div class="cricket-divider">
+  <div class="stumps">
+    <div class="stump"></div>
+    <div class="stump"></div>
+    <div class="stump"></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section observe">
+    <div class="s-label">07 · contact</div>
+    <h2 class="s-title">Get In Touch</h2>
+    <div class="s-line"></div>
+    <div class="s-content">
+      <div class="contact-grid">
+        <div>
+          <!--<p class="contact-bio">I'm open to internship opportunities in backend development, AI/ML, and full-stack roles. Feel free to reach out — I respond within 24 hours. 🏏</p>-->
+          <div class="contact-info">
+            <a class="contact-item" href="/cdn-cgi/l/email-protection#d1a8b4a2a6b0bfa5b9a8b0b5b0a7e5e591b6bcb0b8bdffb2bebc"><i class="fas fa-envelope"></i><span class="__cf_email__" data-cfemail="f58c908682949b819d8c94919483c1c1b59298949c99db969a98">[email&#160;protected]</span></a>
+            <a class="contact-item" href="tel:+917060883027"><i class="fas fa-phone"></i>+91 7060883027</a>
+            <a class="contact-item" href="https://linkedin.com/in/landa-yeswanth-yadav" target="_blank"><i class="fab fa-linkedin"></i>landa-yeswanth-yadav</a>
+            <a class="contact-item" href="https://github.com/YeswanthYadav04" target="_blank"><i class="fab fa-github"></i>YeswanthYadav04</a>
+          </div>
+        </div>
+        <form onsubmit="handleSubmit(event)">
+          <div class="fg"><label>Name</label><input type="text" placeholder="Your name" required/></div>
+          <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com" required/></div>
+          <div class="fg"><label>Message</label><textarea placeholder="What's on your mind?" required></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message <i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-anime">"Stay at the crease. Respect every ball. Trust the process." — The Cricket Philosophy</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
