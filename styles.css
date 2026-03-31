@@ -658,3 +658,25 @@
     margin-top: 2.5rem;
   }
 }
+
+.nav-links a[href="resume.pdf"] {
+  color: var(--green);
+  opacity: 1;
+}
+
+/* optional: slightly stronger hover */
+.nav-links a[href*="drive.google.com"]:hover {
+  color: #3ce881;
+}
+
+/* force highlight */
+.nav-links a.resume-link {
+  color: var(--green) !important;
+  opacity: 1 !important;
+  font-weight: 600;
+}
+
+/* hover */
+.nav-links a.resume-link:hover {
+  color: #3ce881;
+}
