@@ -240,18 +240,28 @@ const io = new IntersectionObserver(entries => {
 document.querySelectorAll('.observe').forEach(el => io.observe(el));
 
 
-// ===================== CONTACT =====================
+// ===================== CONTACT (UPDATED WITH EMAILJS) =====================
 function handleSubmit(e) {
   e.preventDefault();
 
-  const n = e.target[0].value;
-  const em = e.target[1].value;
-  const m = e.target[2].value;
+  const name = e.target[0].value;
+  const email = e.target[1].value;
+  const message = e.target[2].value;
 
-  window.location.href =
-    `mailto:yeswanthyadav44@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(n)}&body=${encodeURIComponent(m + '\n\nFrom: ' + n + '\nEmail: ' + em)}`;
+  emailjs.send("service_y3ve49r", "template_zh1rst8", {
+    name: name,
+    email: email,
+    message: message
+  })
+  .then(() => {
+    alert("🔥 Message sent successfully!");
+    e.target.reset();
+  })
+  .catch((error) => {
+    alert("❌ Failed to send message");
+    console.error(error);
+  });
 }
-
 
 // ===================== 🏏 CRICKET ENHANCEMENTS =====================
 
